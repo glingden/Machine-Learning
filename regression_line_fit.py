@@ -3,6 +3,10 @@ Authur: Ganga Lingden
 This is a simple demonstration for finding the best regression line
 on the given data points. This code provides 2d interative regression
 line plot.
+
+Given equation: y = ax + b. After solving the derivatives of the loss
+function- MES w.r.t 'a' and 'b', the value of 'a' and 'b' are found as
+follows: a =  ∑𝑖=1-𝑁(x𝑖y𝑖−x𝑖y¯)/∑𝑖=1-𝑁(x𝑖2−x𝑖x¯)  and, b =y¯− ax¯
 """
 
 # import necessary libraries
