@@ -1,2 +1,2 @@
 # MachineLearning_Intro
-Scratch coding of  Machine Learning Algorithms
+Projects/Works Related to Machine Learning
