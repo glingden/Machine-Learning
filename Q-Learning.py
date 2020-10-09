@@ -1,3 +1,7 @@
+""""
+Author: Ganga Lingden
+This is the Q-learning implement to solve the Taxi problem with optimal policy
+"""
 # Load OpenAI Gym and other necessary packages
 import gym
 import random
