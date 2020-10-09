@@ -1,3 +1,11 @@
+"""
+Author: Ganga Lingden
+This is a simple script to build ML model using ANN for Cifar-10 dataset.
+The keras-tuner is used for hyper-parameter tuning.
+"""
+
+
+
 # import libraries
 import numpy as np
 import tensorflow as tf
@@ -30,7 +38,6 @@ def unpickle(file):
 def cifar10_color(data, im_rescale):
     """
     Convert an image of(n , 32, 32,3) into given size and flatten them.
-
     :param
     data(ndarray): Image data
 
@@ -81,6 +88,7 @@ class Cifar_10_hyper_tunner(HyperModel):
                       metrics=['accuracy'])  # Compile with  configuration
 
         return model
+
 
 
 
@@ -142,6 +150,7 @@ if __name__ == "__main__":
     num_class = 10  # Total classes
     hype_tunner = Cifar_10_hyper_tunner(num_class=num_class,
                                        input_shape=input_shape)  # Create hyper-model class instance
+
     # RandomSearch hyper-parameters Search
     model_tuner = RandomSearch(hype_tunner,
                                objective='val_accuracy',
@@ -167,17 +176,4 @@ if __name__ == "__main__":
     loss, accuracy = best_model.evaluate(test_data, test_labels_cat)  # Evaluation
     print(accuracy)
 
-    # Plot Model Comparison
-    accuracy = [45.46, 43.46, 51.46]  # Y-values # Y-values (Accuracy score from each model types)
-    x = ['1NN(L1+Standarised)', 'Multi-Gau_Bayes(16x16)', 'ANN']  # X-values
-    fig, ax = plt.subplots(figsize=(9, 7))  # Set figure
-    bar_plot = plt.bar(x, accuracy, width=0.2, color='maroon')  # Barchart plot
-    for x in bar_plot:  # Get (x,y) co-ordinates
-        height = x.get_height()  # Get bar values
-        ax.text(x=x.get_x() + x.get_width() / 2., y=height, s=str(height) + '%', ha='center', va='bottom',
-                rotation=0)  # Put values
-    plt.xlabel('Model Types')
-    plt.ylabel('Accuracy')
-    plt.title('Comparision: 1NN vs Bayes vs ANN')
-    plt.ylim(0, 90)
-    plt.show()
+
