@@ -1,7 +1,8 @@
 """
 Author: Ganga Lingden
-This is a simple script to build ML model using ANN for Cifar-10 dataset.
-The keras-tuner is used for hyper-parameter tuning.
+This is a simple script to build  ANN Classifier for Cifar-10 dataset. The keras-tuner is
+used for hyper-parameter tuning. And, for this work, Cifar-10(python vesrion)
+dataset is used, link: https://www.cs.toronto.edu/~kriz/cifar.html .
 """
 
 
@@ -38,6 +39,7 @@ def unpickle(file):
 def cifar10_color(data, im_rescale):
     """
     Convert an image of(n , 32, 32,3) into given size and flatten them.
+
     :param
     data(ndarray): Image data
 
@@ -53,7 +55,7 @@ def cifar10_color(data, im_rescale):
     return resized_img_array
 
 
-# Define keras-tuner HyperModel subclass for model building
+# Define keras-tuner HyperModel subclass for ANN parameter-tunining
 class Cifar_10_hyper_tunner(HyperModel):
 
     def __init__(self, num_class, input_shape):
@@ -150,7 +152,6 @@ if __name__ == "__main__":
     num_class = 10  # Total classes
     hype_tunner = Cifar_10_hyper_tunner(num_class=num_class,
                                        input_shape=input_shape)  # Create hyper-model class instance
-
     # RandomSearch hyper-parameters Search
     model_tuner = RandomSearch(hype_tunner,
                                objective='val_accuracy',
@@ -175,5 +176,4 @@ if __name__ == "__main__":
     best_model = model_tuner.get_best_models(num_models=1)[0]  # best model
     loss, accuracy = best_model.evaluate(test_data, test_labels_cat)  # Evaluation
     print(accuracy)
-
 
