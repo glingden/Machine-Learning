@@ -1,7 +1,7 @@
 """"
 Author: Ganga Lingden
 In this script, KNN(K-Nearest Neighbours) classifier is developed from scratch:
-The script test with the Cifar-10 dataset:
+The script is  tested with the Cifar-10 dataset:
   Cifar-10(Python version), Link: https://www.cs.toronto.edu/~kriz/cifar.html
   Results:
     With out data standardized: L1 (38.59%) and L2 (35.39%)
@@ -222,7 +222,7 @@ if __name__ == "__main__":
     test_data = test_data / 255.0
     train_data = train_data / 255.0
     
-    k = 1 # hyper-parameter for k-NN
+    k = 1  # hyper-parameter for k-NN (You can test with different k-values)
     start_time = time.time() # start time
     knn = KnnClassifier(k)
     knn.fit(train_data, train_labels)
@@ -232,15 +232,17 @@ if __name__ == "__main__":
     print("Time taken:  {} seconds".format(round(time.time() - start_time)))
 
 
-    ''' == Using Scipy packages === '''
-    test_data = zscore(test_data, axis=1)  # standarized data
+
+
+    ''' == KNN Algorithm using Scipy Packages === '''
+    test_data = zscore(test_data, axis=1)  # standardized data
     train_data = zscore(train_data, axis=1)
     start_time = time.time()  # start time
     eudis = distance.cdist(test_data, train_data, 'euclidean')  # Distance
     k_index = np.argsort(eudis)[:, :k]  # index for k-Nearst Neigbors
     k_neighbors = train_labels[k_index] # k-nearest neighbors
 
-    pred_labels = np.zeros(len(test_labels), dtype=np.int16) # store prediction
+    pred_labels = np.zeros(len(test_labels), dtype=np.int16)  # store prediction
     for i, neighbors in enumerate(k_neighbors):
         hig_count_neig = stats.mode(neighbors).mode  # get neighbors with max count
         pred_labels[i] = hig_count_neig
