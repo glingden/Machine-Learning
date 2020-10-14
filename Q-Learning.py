@@ -1,7 +1,9 @@
 """"
 Author: Ganga Lingden
-This is the Q-learning implement to solve the Taxi problem with optimal policy
+This is the Q-learning implementation to solve the Taxi problem with optimal policy.
+The OpenAI Gym environment (https://www.openai.com/) is used for the work.
 """
+
 # Load OpenAI Gym and other necessary packages
 import gym
 import random
@@ -57,7 +59,7 @@ def test(q_table):
     state = env.reset()  # set environment
     total_reward = 0
     total_action = 0
-    for steps in range(50):
+    for steps in range(50): # steps/actions
         action = np.argmax(Q_reward[state])  # action
         new_state, reward, done, info = env.step(action)  # observe
         state = new_state  # update new state
