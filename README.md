@@ -1,2 +1,3 @@
 # Machine Learning
-In this repo, you will find simple and general projects/works related to  Machine Learning. And, the separate python script with jupyter notebook(results/output of script can be seen) are avaiable in this repo.
+
+This repository provides a collection of simple machine learning projects focused on image classification tasks. The projects are are  implemented with python and Keras/Tensorflow. The hyperparameter tuning is performed using the Keras Tuner. Each project includes a Python script and a Jupyter notebook, which displays the results and outputs of at end of the jupyter notebook. 
